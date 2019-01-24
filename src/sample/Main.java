@@ -49,7 +49,7 @@ public class Main extends Application {
                 //tell my program to stop running for x milliseconds
 
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

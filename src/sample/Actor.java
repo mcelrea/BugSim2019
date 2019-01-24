@@ -53,10 +53,14 @@ public class Actor {
         return myLoc;
     }
 
-    public void act() {
+    public void turnRight() {
         myDir += 1;
         if (myDir == 5)
             myDir = Location.NORTH;
+    }
+
+    public void act() {
+        turnRight();
     }
 
     public int getMyDir() {

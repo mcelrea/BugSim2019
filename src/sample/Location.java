@@ -45,6 +45,11 @@ public class Location {
         return null;
     }
 
+    public void setLocation(Location other) {
+        row = other.row;
+        col = other.col;
+    }
+
     @Override
     public String toString() {
         return "Location{" +

@@ -9,8 +9,17 @@ public class Bug extends Actor {
 
     @Override
     public void act() {
-        if(getMyDir() == Location.NORTH){
-            getMyLoc().setRow(getMyLoc().getRow()-1);
+        Location nextLoc = getMyLoc().getAdjacentLocation(getMyDir());
+        System.out.println("Current Location: " + getMyLoc());
+        System.out.println("Next Location   : " + nextLoc);
+        System.out.println("-------------------------------------");
+        if(getMyWorld().isValid(nextLoc)) {
+            getMyWorld().remove(getMyLoc());//erase me from the world
+            getMyLoc().setLocation(nextLoc);
+            getMyWorld().put(this);
+        }
+        else {
+            turnRight();
         }
     }
 }

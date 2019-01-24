@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 public class World {
     Actor world[][];
 
@@ -21,13 +23,15 @@ public class World {
     }
 
     public void act() {
-        for(int row=0; row < world.length; row++) {
-            for(int col=0; col < world[row].length; col++) {
-                if(world[row][col] != null) {
-                    world[row][col].act();
-                }
-            }
+        ArrayList<Actor> allActors = getAllActors();
+        for(Actor a: allActors) {
+            a.act();
         }
+        /*
+         for (int i=0; i < allActors.size(); i++) {
+            allActors.get(i).act();
+         }
+         */
     }
 
     public void put(Actor a) {
@@ -47,6 +51,18 @@ public class World {
         world[loc.getRow()][loc.getCol()] = null;
 
         return a;
+    }
+
+    public ArrayList<Actor> getAllActors() {
+        ArrayList<Actor> actors = new ArrayList<Actor>();
+        for(int row=0; row < world.length; row++) {
+            for (int col = 0; col < world[row].length; col++) {
+                if(world[row][col] != null) {
+                    actors.add(world[row][col]);
+                }
+            }
+        }
+        return actors;
     }
 
     public Actor get(Location loc) {
