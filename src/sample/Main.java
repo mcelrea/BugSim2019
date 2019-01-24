@@ -26,10 +26,11 @@ public class Main extends Application {
         root.getChildren().add(canvas);
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        myWorld.addActor(new Actor(0,0,myWorld));
-        myWorld.addActor(new Actor(1,1,myWorld));
-        myWorld.addActor(new Actor(2,2,myWorld));
-        myWorld.addActor(new Actor(3,3,myWorld));
+        myWorld.put(new Actor(0,0,myWorld));
+        myWorld.put(new Actor(1,1,myWorld));
+        myWorld.put(new Actor(2,2,myWorld));
+        myWorld.put(new Actor(3,3,myWorld));
+        myWorld.put(new Bug(5,5, myWorld));
 
         //this will keep running and looping forever
         new AnimationTimer() {
@@ -39,8 +40,20 @@ public class Main extends Application {
                 gc.setFill(Color.WHITE);
                 gc.fillRect(0,0,800,600);
 
+                //make the world act
+                myWorld.act();
+
                 //draw the world
                 myWorld.draw(gc);
+
+                //tell my program to stop running for x milliseconds
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         }.start();
 

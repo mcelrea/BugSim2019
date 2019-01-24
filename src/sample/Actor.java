@@ -14,15 +14,20 @@ public class Actor {
 
     //fields or instance variables
     private Image northImage, southImage, westImage, eastImage;
-    private float speed;
+    private int myDir;
+    private World myWorld;
     private Location myLoc;
 
     public Actor(int row, int col, World world) {
         this.myLoc = new Location(row, col);
-        world.addActor(this);
+        myDir = Location.NORTH;
+        myWorld = world;
+        setImage("images/actor.png");
+    }
 
+    public void setImage(String path) {
         //attempt to load main image
-        File myFile = new File("images/actor.png");
+        File myFile = new File(path);
         try {
             northImage = new Image(new FileInputStream(myFile));
         } catch (FileNotFoundException e) {
@@ -48,10 +53,49 @@ public class Actor {
         return myLoc;
     }
 
+    public void act() {
+        myDir += 1;
+        if (myDir == 5)
+            myDir = Location.NORTH;
+    }
+
+    public int getMyDir() {
+        return myDir;
+    }
+
+    public void setMyDir(int myDir) {
+        this.myDir = myDir;
+    }
+
+    public World getMyWorld() {
+        return myWorld;
+    }
+
+    public void setMyWorld(World myWorld) {
+        this.myWorld = myWorld;
+    }
+
     public void draw(GraphicsContext gc) {
 
-        gc.drawImage(northImage,
-                     getMyLoc().getCol()*25,
-                     getMyLoc().getRow()*25);
+        if (myDir == Location.NORTH) {
+            gc.drawImage(northImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.SOUTH) {
+            gc.drawImage(southImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.EAST) {
+            gc.drawImage(eastImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.WEST) {
+            gc.drawImage(westImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
     }
 }

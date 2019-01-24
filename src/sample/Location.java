@@ -4,28 +4,12 @@ public class Location {
 
     private int row;
     private int col;
-    private int dir;
     public static final int NORTH = 1, EAST = 2,
                         SOUTH = 3, WEST = 4;
 
     public Location(int row, int col) {
         this.row = row;
         this.col = col;
-        dir = NORTH;
-    }
-
-    public Location(int row, int col, int dir) {
-        this.row = row;
-        this.col = col;
-        this.dir = dir;
-    }
-
-    public int getDir() {
-        return dir;
-    }
-
-    public void setDir(int dir) {
-        this.dir = dir;
     }
 
     public int getRow() {
@@ -42,6 +26,23 @@ public class Location {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public Location getAdjacentLocation(int dir) {
+        if(dir == NORTH) {
+            return new Location(this.row-1, this.col);
+        }
+        else if(dir == SOUTH) {
+            return new Location(this.row+1, this.col);
+        }
+        else if(dir == EAST) {
+            return new Location(this.row, this.col+1);
+        }
+        else if(dir == WEST) {
+            return new Location(this.row, this.col-1);
+        }
+
+        return null;
     }
 
     @Override
