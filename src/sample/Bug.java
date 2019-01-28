@@ -13,7 +13,7 @@ public class Bug extends Actor {
         System.out.println("Current Location: " + getMyLoc());
         System.out.println("Next Location   : " + nextLoc);
         System.out.println("-------------------------------------");
-        if(getMyWorld().isValid(nextLoc)) {
+        if(getMyWorld().isValid(nextLoc) && getMyWorld().get(nextLoc) == null) {
             getMyWorld().remove(getMyLoc());//erase me from the world
             getMyLoc().setLocation(nextLoc);
             getMyWorld().put(this);
