@@ -34,8 +34,10 @@ public class World {
          */
     }
 
-    public void put(Actor a) {
+    public Actor put(Actor a) {
+        Actor deadActor = world[a.getMyLoc().getRow()][a.getMyLoc().getCol()];
         world[a.getMyLoc().getRow()][a.getMyLoc().getCol()] = a;
+        return deadActor;
     }
 
     public boolean isValid(Location loc) {
