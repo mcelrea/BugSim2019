@@ -13,7 +13,9 @@ import java.io.FileNotFoundException;
 public class Actor {
 
     //fields or instance variables
-    private Image northImage, southImage, westImage, eastImage;
+    private Image northImage, southImage, westImage, eastImage,
+                northWestImage, southWestImage, northEastImage,
+                southEastImage;
     private int myDir;
     private World myWorld;
     private Location myLoc;
@@ -47,6 +49,18 @@ public class Actor {
         //West facing image
         iv.setRotate(270);
         westImage = iv.snapshot(params, null);
+        //northEastImage
+        iv.setRotate(45);
+        northEastImage = iv.snapshot(params, null);
+        //southEastImage
+        iv.setRotate(135);
+        southEastImage = iv.snapshot(params, null);
+        //southWestImage
+        iv.setRotate(225);
+        southWestImage = iv.snapshot(params, null);
+        //northWestImage
+        iv.setRotate(315);
+        northWestImage = iv.snapshot(params, null);
     }
 
     public Location getMyLoc() {
@@ -55,7 +69,7 @@ public class Actor {
 
     public void turnRight() {
         myDir += 1;
-        if (myDir == 5)
+        if (myDir == 9)
             myDir = Location.NORTH;
     }
 
@@ -98,6 +112,26 @@ public class Actor {
         }
         else if (myDir == Location.WEST) {
             gc.drawImage(westImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.NORTHWEST) {
+            gc.drawImage(northWestImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.SOUTHWEST) {
+            gc.drawImage(southWestImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.SOUTHEAST) {
+            gc.drawImage(southEastImage,
+                    getMyLoc().getCol() * 25,
+                    getMyLoc().getRow() * 25);
+        }
+        else if (myDir == Location.NORTHEAST) {
+            gc.drawImage(northEastImage,
                     getMyLoc().getCol() * 25,
                     getMyLoc().getRow() * 25);
         }

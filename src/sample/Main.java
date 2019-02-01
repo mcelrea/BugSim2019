@@ -31,7 +31,7 @@ public class Main extends Application {
         myWorld.put(new Bug(5,7, myWorld));
         myWorld.put(new Bug(1,5, myWorld));
         myWorld.put(new Bug(2,8, myWorld));
-        
+        myWorld.put(new BoxBug(6,6,2,myWorld));
 
         //this will keep running and looping forever
         new AnimationTimer() {

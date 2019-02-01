@@ -24,6 +24,7 @@ public class Bug extends Actor {
         }
         else {
             turnRight();
+            turnRight();
         }
     }
 }
